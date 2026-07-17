@@ -896,12 +896,29 @@ a[href^="tel:"] { position: relative; }
 .field textarea { resize: vertical; min-height: 110px; }
 .form__note { font-size: 13px; color: var(--muted); }
 .form__note a { color: var(--blue-600); text-decoration: underline; }
-.form-success {
+.form-result {
   display: none;
-  background: #E9F8F0; border: 1px solid #B7E6CE;
-  color: #12734B; padding: 16px; border-radius: var(--r-sm);
-  font-weight: 600;
+  text-align: center;
+  padding: 10px 4px 4px;
 }
+.form.form--result > *:not(.form-result) { display: none; }
+.form.form--result .form-result { display: block; }
+.form-result__icon {
+  width: 54px; height: 54px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+}
+.form-result__icon svg { width: 26px; height: 26px; stroke-width: 2.5; }
+.form-result--success .form-result__icon { background: rgba(22,163,106,.12); color: var(--success); }
+.form-result--error .form-result__icon { background: rgba(226,61,61,.12); color: var(--danger); }
+.form-result h4 { font-family: var(--font-display); font-size: 19px; margin-bottom: 6px; }
+.form-result p { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+.form-result__actions { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.form-result__retry {
+  font-size: 13px; font-weight: 700; color: var(--blue-600);
+  background: none; border: none; font-family: inherit; cursor: pointer; padding: 4px;
+}
+.form-result__retry:hover { text-decoration: underline; }
 
 /* Карточка-обёртка формы */
 .form-card {
@@ -1815,7 +1832,7 @@ a[href^="tel:"] { position: relative; }
           </div>
           <button type="submit" class="btn btn--primary btn--block">Отправить заявку</button>
           <p class="form__note">Нажимая кнопку, вы соглашаетесь с <a href="#">политикой обработки персональных данных</a>.</p>
-          <div class="form-success">Спасибо! Заявка отправлена, мы скоро свяжемся с вами.</div>
+          <div class="form-result"></div>
         </form>
       </div>
     </div>
@@ -1934,7 +1951,7 @@ a[href^="tel:"] { position: relative; }
         </div>
         <button type="submit" class="btn btn--primary btn--block">Жду звонка</button>
         <p class="form__note">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
-        <div class="form-success">Спасибо! Мы перезвоним вам в ближайшее время.</div>
+        <div class="form-result"></div>
       </form>
     </div>
   </div>
@@ -2124,10 +2141,40 @@ a[href^="tel:"] { position: relative; }
     }
   });
 
+  function buildResultCard(state) {
+    if (state === 'success') {
+      return '<div class="form-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 6 9 17l-5-5"/></svg></div>' +
+        '<h4>Спасибо, заявка принята</h4>' +
+        '<p>Свяжемся с вами в ближайшее время</p>' +
+        '<div class="form-result__actions"><a class="btn btn--primary" href="index.html">На главную</a></div>';
+    }
+    return '<div class="form-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></div>' +
+      '<h4>Не получилось отправить</h4>' +
+      '<p>Позвоните нам напрямую — мы на связи</p>' +
+      '<div class="form-result__actions"><a class="btn btn--primary" href="tel:+79818345864">Позвонить: +7 (981) 834-58-64</a><button type="button" class="form-result__retry" data-retry>Попробовать снова</button></div>';
+  }
+
+  function showFormResult(form, state) {
+    var result = form.querySelector('.form-result');
+    if (!result) return;
+    result.className = 'form-result form-result--' + state;
+    result.innerHTML = buildResultCard(state);
+    form.classList.add('form--result');
+  }
+
+  function resetFormResult(form) {
+    var result = form.querySelector('.form-result');
+    form.classList.remove('form--result');
+    if (result) { result.className = 'form-result'; result.innerHTML = ''; }
+  }
+
   document.querySelectorAll('form[data-form]').forEach(function (form) {
+    form.addEventListener('click', function (e) {
+      if (e.target.closest('[data-retry]')) { resetFormResult(form); }
+    });
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var success = form.querySelector('.form-success');
       var btn = form.querySelector('button[type="submit"]');
       var btnText = btn ? btn.textContent : '';
 
@@ -2135,7 +2182,7 @@ a[href^="tel:"] { position: relative; }
       if (honeyField && honeyField.value) {
         // Поле-ловушку заполнил бот — тихо считаем форму отправленной,
         // ничего никуда не посылаем.
-        if (success) { success.style.display = 'block'; }
+        showFormResult(form, 'success');
         return;
       }
 
@@ -2153,16 +2200,11 @@ a[href^="tel:"] { position: relative; }
       })
       .then(function (r) { return r.json(); })
       .then(function () {
-        if (success) { success.style.display = 'block'; }
-        form.querySelectorAll('input, textarea').forEach(function (el) { el.disabled = true; });
-        if (btn) { btn.textContent = 'Отправлено'; }
+        showFormResult(form, 'success');
         if (form.closest('.modal-overlay')) { setTimeout(closeModal, 2500); }
       })
       .catch(function () {
-        if (success) {
-          success.style.display = 'block';
-          success.textContent = 'Не удалось отправить онлайн. Пожалуйста, позвоните нам, мы на связи.';
-        }
+        showFormResult(form, 'error');
         if (btn) { btn.disabled = false; btn.textContent = btnText; }
       });
     });
