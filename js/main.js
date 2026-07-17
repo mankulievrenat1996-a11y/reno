@@ -158,10 +158,40 @@
     }
   });
 
+  function buildResultCard(state) {
+    if (state === 'success') {
+      return '<div class="form-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 6 9 17l-5-5"/></svg></div>' +
+        '<h4>Спасибо, заявка принята</h4>' +
+        '<p>Свяжемся с вами в ближайшее время</p>' +
+        '<div class="form-result__actions"><a class="btn btn--primary" href="index.html">На главную</a></div>';
+    }
+    return '<div class="form-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></div>' +
+      '<h4>Не получилось отправить</h4>' +
+      '<p>Позвоните нам напрямую — мы на связи</p>' +
+      '<div class="form-result__actions"><a class="btn btn--primary" href="tel:+79818345864">Позвонить: +7 (981) 834-58-64</a><button type="button" class="form-result__retry" data-retry>Попробовать снова</button></div>';
+  }
+
+  function showFormResult(form, state) {
+    var result = form.querySelector('.form-result');
+    if (!result) return;
+    result.className = 'form-result form-result--' + state;
+    result.innerHTML = buildResultCard(state);
+    form.classList.add('form--result');
+  }
+
+  function resetFormResult(form) {
+    var result = form.querySelector('.form-result');
+    form.classList.remove('form--result');
+    if (result) { result.className = 'form-result'; result.innerHTML = ''; }
+  }
+
   document.querySelectorAll('form[data-form]').forEach(function (form) {
+    form.addEventListener('click', function (e) {
+      if (e.target.closest('[data-retry]')) { resetFormResult(form); }
+    });
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var success = form.querySelector('.form-success');
       var btn = form.querySelector('button[type="submit"]');
       var btnText = btn ? btn.textContent : '';
 
@@ -169,7 +199,7 @@
       if (honeyField && honeyField.value) {
         // Поле-ловушку заполнил бот — тихо считаем форму отправленной,
         // ничего никуда не посылаем.
-        if (success) { success.style.display = 'block'; }
+        showFormResult(form, 'success');
         return;
       }
 
@@ -187,16 +217,11 @@
       })
       .then(function (r) { return r.json(); })
       .then(function () {
-        if (success) { success.style.display = 'block'; }
-        form.querySelectorAll('input, textarea').forEach(function (el) { el.disabled = true; });
-        if (btn) { btn.textContent = 'Отправлено'; }
+        showFormResult(form, 'success');
         if (form.closest('.modal-overlay')) { setTimeout(closeModal, 2500); }
       })
       .catch(function () {
-        if (success) {
-          success.style.display = 'block';
-          success.textContent = 'Не удалось отправить онлайн. Пожалуйста, позвоните нам, мы на связи.';
-        }
+        showFormResult(form, 'error');
         if (btn) { btn.disabled = false; btn.textContent = btnText; }
       });
     });
