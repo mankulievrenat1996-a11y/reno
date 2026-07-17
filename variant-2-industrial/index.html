@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>АкваЛайн — Вариант 2 «Индустриальный» (демо стиля)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#14171C; --bg2:#1B1F26; --bg3:#20242C;
+  --panel:#1E222A; --line:#2B303A;
+  --amber:#FF7A1A; --amber2:#FFB020;
+  --text:#EAEDF2; --muted:#98A2B3;
+  --light:#F5F6F8; --light-text:#171A1F;
+  --font:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace;
+  --r-sm:6px; --r-md:10px; --r-lg:4px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;font-size:17px}
+img,svg{display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section{padding:88px 0}
+.section--light{background:var(--light);color:var(--light-text)}
+h1,h2,h3,h4{line-height:1.15;font-weight:800;letter-spacing:-0.01em}
+h1{font-size:clamp(32px,4.4vw,54px);text-transform:uppercase;letter-spacing:-0.01em}
+h2{font-size:clamp(26px,3.2vw,38px);text-transform:uppercase}
+h3{font-size:20px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-bottom:16px}
+.eyebrow::before{content:"";width:8px;height:8px;background:var(--amber)}
+.section-head{max-width:700px;margin-bottom:46px}
+.section-head p{color:var(--muted);font-size:18px;margin-top:14px}
+.section--light .section-head p{color:#5B6472}
+.lead{font-size:19px;color:var(--muted)}
+
+/* Buttons: sharp corners, industrial */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 30px;font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:.03em;border-radius:var(--r-lg);transition:.15s}
+.btn--amber{background:var(--amber);color:#14171C;box-shadow:0 8px 0 #A85310}
+.btn--amber:hover{transform:translateY(2px);box-shadow:0 6px 0 #A85310}
+.btn--outline{border:2px solid #3A4150;color:var(--text)}
+.btn--outline:hover{border-color:var(--amber);color:var(--amber)}
+.section--light .btn--outline{border-color:#D5D9E0;color:var(--light-text)}
+.btn--dark{background:var(--light-text);color:#fff;box-shadow:0 8px 0 #000}
+.btn--dark:hover{transform:translateY(2px);box-shadow:0 6px 0 #000}
+.btn--block{width:100%}
+
+/* Header */
+.topbar{background:#0E1014;color:#8B93A3;font-family:var(--mono);font-size:13px}
+.topbar__inner{display:flex;justify-content:space-between;align-items:center;padding:9px 0;flex-wrap:wrap;gap:10px}
+.topbar strong{color:var(--amber2)}
+.header{position:sticky;top:0;z-index:50;background:rgba(20,23,28,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.header__inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:20px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo__mark{width:42px;height:42px;flex:none;display:block}
+.logo__name{font-weight:900;font-size:20px;text-transform:uppercase;letter-spacing:.02em}
+.logo__tag{font-size:11px;color:var(--muted);font-family:var(--mono);text-transform:uppercase}
+.nav{display:flex;align-items:center;gap:6px}
+.nav a{padding:10px 14px;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.02em;border-radius:var(--r-lg)}
+.nav a:hover{background:var(--bg3);color:var(--amber2)}
+.nav a.active{color:var(--amber)}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;background:
+  linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+  border-bottom:1px solid var(--line);
+}
+.hero::before{
+  content:"";position:absolute;inset:0;opacity:.5;
+  background-image:
+    linear-gradient(rgba(255,122,26,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,122,26,.06) 1px, transparent 1px);
+  background-size:42px 42px;
+  mask-image:linear-gradient(180deg, black, transparent 75%);
+}
+.hero__grid{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:80px 0 70px}
+.hero__badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,122,26,.12);border:1px solid rgba(255,122,26,.35);color:var(--amber2);padding:8px 16px;font-family:var(--mono);font-size:12.5px;font-weight:700;text-transform:uppercase;margin-bottom:24px}
+.hero h1{margin-bottom:22px}
+.hero h1 .accent{color:var(--amber)}
+.hero__sub{font-size:19px;color:#B7BFCC;max-width:540px;margin-bottom:32px}
+.hero__cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+.hero__stats{display:flex;gap:0;border-top:1px solid var(--line)}
+.hero__stat{flex:1;padding:20px 24px 0;border-left:1px solid var(--line)}
+.hero__stat:first-child{border-left:none;padding-left:0}
+.hero__stat .num{font-family:var(--mono);font-size:30px;font-weight:700;color:var(--amber2)}
+.hero__stat .lbl{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin-top:4px}
+
+.hero__panel{background:var(--panel);border:1px solid var(--line);padding:32px}
+.hero__panel .tag{font-family:var(--mono);font-size:12px;color:var(--amber);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+.hero__panel h3{margin-bottom:22px;text-transform:none}
+.hero__panel ul{display:grid;gap:16px}
+.hero__panel li{display:flex;gap:14px;align-items:flex-start;font-size:15.5px;color:#DDE2EA}
+.hero__panel .n{font-family:var(--mono);font-weight:700;color:var(--amber);flex:none}
+
+/* Cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line)}
+.card{background:var(--bg2);padding:32px}
+.card__icon{width:48px;height:48px;background:var(--bg3);border:1px solid var(--line);display:grid;place-items:center;color:var(--amber);margin-bottom:20px}
+.card h3{margin-bottom:10px;text-transform:none}
+.card p{color:var(--muted);font-size:15.5px}
+
+/* Services */
+.services{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--line)}
+.service{background:var(--bg2);padding:34px;position:relative}
+.service__num{font-family:var(--mono);font-size:13px;color:var(--amber);font-weight:700;margin-bottom:16px}
+.service h3{margin-bottom:12px;text-transform:none}
+.service p{color:var(--muted);font-size:15.5px;margin-bottom:18px}
+.service ul{display:grid;gap:9px}
+.service li{display:flex;gap:10px;font-size:14.5px;color:#D5DAE2}
+.service li::before{content:"→";color:var(--amber);font-family:var(--mono);font-weight:700}
+
+/* Steps */
+.steps{display:flex;border:1px solid var(--line)}
+.step{flex:1;padding:30px 26px;border-left:1px solid var(--line);position:relative}
+.step:first-child{border-left:none}
+.step__num{font-family:var(--mono);font-size:34px;font-weight:800;color:var(--amber);margin-bottom:14px}
+.step h3{font-size:17px;margin-bottom:8px;text-transform:none}
+.step p{color:var(--muted);font-size:14.5px}
+
+/* CTA */
+.cta{background:var(--amber);color:#14171C;padding:56px;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center}
+.cta h2{color:#14171C}
+.cta p{margin-top:12px;font-size:17px;color:#3A2200}
+.cta__actions{display:flex;flex-direction:column;gap:14px}
+.cta__phone{font-family:var(--mono);font-size:24px;font-weight:800;color:#14171C}
+.cta__phone span{display:block;font-size:13px;font-weight:600}
+
+/* Form */
+.form-card{background:var(--panel);border:1px solid var(--line);padding:34px}
+.form-card h3{margin-bottom:6px;text-transform:none}
+.form-card>p{color:var(--muted);margin-bottom:22px}
+.form{display:grid;gap:16px}
+.form__row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field label{display:block;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;margin-bottom:8px;color:var(--muted)}
+.field input,.field textarea{width:100%;padding:14px 16px;background:var(--bg);border:1px solid var(--line);color:var(--text);font-family:inherit;font-size:16px}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--amber)}
+
+/* Footer */
+.footer{background:#0E1014;color:#8B93A3;padding:60px 0 0}
+.footer__grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:44px;border-bottom:1px solid var(--line)}
+.footer h4{color:#fff;font-size:14px;text-transform:uppercase;margin-bottom:18px;font-family:var(--mono)}
+.footer__links{display:grid;gap:11px;font-size:15px}
+.footer__bottom{padding:20px 0;display:flex;justify-content:space-between;font-size:13px;flex-wrap:wrap;gap:10px}
+
+.compare-bar{position:sticky;bottom:0;z-index:60;background:#0E1014;border-top:1px solid var(--line);padding:14px 0}
+.compare-bar .container{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.compare-bar a{font-family:var(--mono);font-size:13px;font-weight:700;text-transform:uppercase;color:var(--amber2);border:1px solid var(--amber2);padding:8px 14px}
+.compare-bar span{color:var(--muted);font-size:14px}
+
+@media(max-width:1024px){
+  .hero__grid{grid-template-columns:1fr}
+  .cards,.services{grid-template-columns:1fr 1fr}
+  .steps{flex-wrap:wrap}
+  .step{flex:1 1 50%;border-bottom:1px solid var(--line)}
+  .cta{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .cards,.services,.form__row,.footer__grid{grid-template-columns:1fr}
+  .step{flex:1 1 100%}
+  .hero__stats{flex-wrap:wrap}
+  .hero__stat{flex:1 1 50%}
+  .cta{padding:32px 22px}
+  .nav{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container topbar__inner">
+    <span>МОСКВА · МО · САНКТ-ПЕТЕРБУРГ · ЛО</span>
+    <span>АВАРИЙНАЯ СЛУЖБА <strong>24/7</strong> &nbsp;·&nbsp; <strong>+7 (495) 000-00-00</strong></span>
+  </div>
+</div>
+
+<header class="header">
+  <div class="container header__inner">
+    <a href="#" class="logo">
+      <svg class="logo__mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="48" height="48" rx="9" fill="url(#lgi)"/>
+        <path d="M24 11c-4.2 5-8 9-8 13.5a8 8 0 1 0 16 0C32 20 28.2 16 24 11Z" fill="#14171C"/>
+        <path d="M24 27.5a3.5 3.5 0 0 1-3.5-3.5" stroke="#FFB020" stroke-width="2" stroke-linecap="round"/>
+        <defs><linearGradient id="lgi" x1="0" y1="0" x2="48" y2="48"><stop stop-color="#FF7A1A"/><stop offset="1" stop-color="#FFB020"/></linearGradient></defs>
+      </svg>
+      <span>
+        <div class="logo__name">АкваЛайн</div>
+        <div class="logo__tag">Без отключения воды</div>
+      </span>
+    </a>
+    <nav class="nav">
+      <a href="#" class="active">Главная</a>
+      <a href="#services">Услуги</a>
+      <a href="#about">О компании</a>
+      <a href="#projects">Объекты</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a href="#contacts" class="btn btn--amber">Заказать звонок</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero__grid">
+    <div>
+      <span class="hero__badge">▸ Работа под давлением, без остановки сети</span>
+      <h1>Ремонт водопроводов <span class="accent">без отключения воды</span></h1>
+      <p class="hero__sub">Врезка и перекрытие трубопроводов под давлением, аварийный ремонт и плановое обслуживание сетей — для производств, ЖКХ и СНТ.</p>
+      <div class="hero__cta">
+        <a href="#contacts" class="btn btn--amber">Оставить заявку</a>
+        <a href="#services" class="btn btn--outline">Смотреть услуги</a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat"><div class="num">12+</div><div class="lbl">Лет на рынке</div></div>
+        <div class="hero__stat"><div class="num">800+</div><div class="lbl">Объектов сдано</div></div>
+        <div class="hero__stat"><div class="num">24/7</div><div class="lbl">Аварийный выезд</div></div>
+      </div>
+    </div>
+    <div class="hero__panel">
+      <div class="tag">// Технология</div>
+      <h3>Почему без отключения — важно</h3>
+      <ul>
+        <li><span class="n">01</span> Производство не останавливает процесс</li>
+        <li><span class="n">02</span> Жители СНТ не остаются без воды</li>
+        <li><span class="n">03</span> Не нужно сливать и запускать систему заново</li>
+        <li><span class="n">04</span> Экономия времени и денег на каждой врезке</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Почему мы</span>
+      <h2>Решаем задачи любого масштаба</h2>
+      <p>Собственное оборудование для работ под давлением и опытные аттестованные бригады.</p>
+    </div>
+  </div>
+  <div class="cards">
+    <div class="card"><div class="card__icon">⚡</div><h3>Без остановки воды</h3><p>Врезка и перекрытие под давлением — потребители не замечают работ.</p></div>
+    <div class="card"><div class="card__icon">◷</div><h3>Служба 24/7</h3><p>Выезжаем на прорывы и утечки круглосуточно, включая праздники.</p></div>
+    <div class="card"><div class="card__icon">✓</div><h3>Договор и гарантия</h3><p>Официальный договор, смета без скрытых доплат.</p></div>
+  </div>
+</section>
+
+<section class="section section--light" id="services">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Что мы делаем</span>
+      <h2>Ключевые услуги</h2>
+    </div>
+  </div>
+  <div class="services">
+    <div class="service"><div class="service__num">01</div><h3>Врезка под давлением</h3><p>Присоединение отводов к действующему трубопроводу без слива воды.</p><ul><li>Диаметры от малых до магистральных</li><li>Сталь, чугун, ПНД, ПЭ</li></ul></div>
+    <div class="service"><div class="service__num">02</div><h3>Перекрытие под давлением</h3><p>Временное перекрытие участка для ремонта без отключения сети.</p><ul><li>Локализация аварийного участка</li><li>Замена арматуры без простоя</li></ul></div>
+    <div class="service"><div class="service__num">03</div><h3>Аварийный ремонт</h3><p>Устранение прорывов и утечек в кратчайшие сроки.</p><ul><li>Выезд 24/7</li><li>Быстрая локализация повреждений</li></ul></div>
+    <div class="service"><div class="service__num">04</div><h3>Обслуживание сетей</h3><p>Плановое ТО водопроводов предприятий, УК, СНТ.</p><ul><li>Ревизия запорной арматуры</li><li>Договор на регулярное ТО</li></ul></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Как мы работаем</span>
+      <h2>5 шагов до готового объекта</h2>
+    </div>
+  </div>
+  <div class="container">
+    <div class="steps">
+      <div class="step"><div class="step__num">01</div><h3>Заявка</h3><p>Принимаем и уточняем задачу</p></div>
+      <div class="step"><div class="step__num">02</div><h3>Выезд</h3><p>Обследуем объект</p></div>
+      <div class="step"><div class="step__num">03</div><h3>Смета</h3><p>Фиксируем стоимость</p></div>
+      <div class="step"><div class="step__num">04</div><h3>Работы</h3><p>Под давлением, без отключения</p></div>
+      <div class="step"><div class="step__num">05</div><h3>Сдача</h3><p>Гарантия на работы</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--light">
+  <div class="container">
+    <div class="cta">
+      <div>
+        <h2>Нужен срочный выезд?</h2>
+        <p>Инженер перезвонит и предложит решение без отключения воды.</p>
+      </div>
+      <div class="cta__actions">
+        <a href="tel:+74950000000" class="cta__phone">+7 (495) 000-00-00<span>Аварийная служба 24/7</span></a>
+        <a href="#contacts" class="btn btn--dark btn--block">Заказать звонок</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contacts">
+  <div class="container" style="max-width:560px">
+    <div class="form-card">
+      <h3>Оставить заявку</h3>
+      <p>Ответим и рассчитаем стоимость работ.</p>
+      <form class="form" onsubmit="event.preventDefault();alert('Демо-страница дизайна: форма не отправляется здесь.')">
+        <div class="form__row">
+          <div class="field"><label>Имя</label><input type="text" placeholder="Как к вам обращаться"></div>
+          <div class="field"><label>Телефон</label><input type="tel" placeholder="+7 (___) ___-__-__"></div>
+        </div>
+        <div class="field"><label>Задача</label><textarea placeholder="Опишите задачу"></textarea></div>
+        <button type="submit" class="btn btn--amber btn--block">Отправить заявку</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="logo__name" style="color:#fff">АкваЛайн</div>
+        <p style="margin-top:14px;max-width:320px;font-size:14.5px">Ремонт и обслуживание водопроводных сетей без остановки водоснабжения.</p>
+      </div>
+      <div>
+        <h4>Услуги</h4>
+        <div class="footer__links"><a href="#">Врезка под давлением</a><a href="#">Перекрытие</a><a href="#">Аварийный ремонт</a></div>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <div class="footer__links"><a href="tel:+74950000000">+7 (495) 000-00-00</a><a href="mailto:info@aqualine.ru">info@aqualine.ru</a></div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 АкваЛайн</span>
+      <span>Демо-версия дизайна «Индустриальный»</span>
+    </div>
+  </div>
+</footer>
+
+<div class="compare-bar">
+  <div class="container">
+    <span>Это демо-страница варианта дизайна №2 — «Индустриальный» (тёмный + янтарный)</span>
+    <a href="../index.html">← К варианту 1 «Сине-белый»</a>
+  </div>
+</div>
+
+</body>
+</html>

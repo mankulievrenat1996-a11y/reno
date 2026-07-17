@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /photo-picker.html
+Disallow: /photo-picker-2.html
+Disallow: /photo-picker-3.html
+Disallow: /.claude/
+
+Sitemap: https://aqualine.ru/sitemap.xml

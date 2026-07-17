@@ -1,0 +1,5 @@
+name=Имя
+phone=Телефон
+object=Тип объекта
+message=Задача
+email=E-mail
