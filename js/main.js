@@ -204,7 +204,7 @@
       }
 
       var data = new FormData(form);
-      data.append('_subject', 'Новая заявка с сайта АкваЛайн');
+      data.append('_subject', 'Новая заявка с сайта РПД');
       data.append('_template', 'table');
       data.append('_captcha', 'true');
 
