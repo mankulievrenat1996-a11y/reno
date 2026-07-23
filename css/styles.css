@@ -77,6 +77,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--white);
 }
 
+/* Секция с фоновым фото (сочетается с .section--navy для белого текста/стеклянных карточек) */
+.section--photo {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(8,24,50,.45) 0%, rgba(8,24,50,.82) 65%, rgba(8,24,50,.94) 100%),
+    var(--photo-bg) center/cover no-repeat;
+}
+.section--photo > .container { position: relative; z-index: 1; }
+
 .eyebrow {
   display: inline-flex;
   align-items: center;
