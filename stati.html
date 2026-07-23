@@ -361,9 +361,43 @@ h3 { font-size: 22px; }
 }
 .hero__panel h2 { color: #fff; font-size: 24px; margin-bottom: 8px; }
 .hero__panel .muted { color: #C7D6F0; font-size: 15.5px; margin-bottom: 24px; }
-.hero__panel ul { display: grid; gap: 16px; }
-.hero__panel li { display: flex; gap: 12px; align-items: flex-start; font-size: 17px; color: #fff; }
-.hero__panel li svg { width: 23px; height: 23px; flex: none; color: #4ade80; margin-top: 1px; }
+.hero__panel-visual {
+  position: relative;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  min-height: 190px;
+  padding: 18px;
+  background: linear-gradient(160deg, var(--navy-700), var(--navy-900));
+}
+.hero__panel-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(135deg, rgba(217,139,98,.08) 0 10px, transparent 10px 20px);
+}
+.hero__panel-visual-label {
+  position: relative;
+  display: block;
+  font-size: 13px;
+  color: #D9C7B8;
+  margin-bottom: 40px;
+}
+.hero__panel-stats {
+  position: relative;
+  display: flex;
+  gap: 10px;
+}
+.hero__panel-stat {
+  flex: 1;
+  background: rgba(255,255,255,.1);
+  border-radius: var(--r-sm);
+  padding: 12px 10px;
+  text-align: center;
+}
+.hero__panel-stat .num { display: block; font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #fff; }
+.hero__panel-stat .lbl { display: block; font-size: 11px; color: #D9C7B8; margin-top: 3px; }
+.hero__panel-stat--hot { background: rgba(212,148,31,.28); }
+.hero__panel-stat--hot .num { color: var(--terra-500); }
 
 /* Плашка «доверяют» под героем */
 .trust {
