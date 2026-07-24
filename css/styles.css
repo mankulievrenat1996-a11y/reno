@@ -842,6 +842,24 @@ a[href^="tel:"] { position: relative; }
 .field textarea { resize: vertical; min-height: 110px; }
 .form__note { font-size: 13px; color: var(--muted); }
 .form__note a { color: var(--terracotta-600); text-decoration: underline; }
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  line-height: 1.5;
+}
+.consent input[type="checkbox"] {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  accent-color: var(--terracotta-600);
+  cursor: pointer;
+}
+.consent a { color: var(--terracotta-600); text-decoration: underline; }
 .form-result {
   display: none;
   text-align: center;

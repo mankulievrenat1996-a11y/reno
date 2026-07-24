@@ -893,6 +893,24 @@ a[href^="tel:"] { position: relative; }
 .field textarea { resize: vertical; min-height: 110px; }
 .form__note { font-size: 13px; color: var(--muted); }
 .form__note a { color: var(--terracotta-600); text-decoration: underline; }
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  line-height: 1.5;
+}
+.consent input[type="checkbox"] {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  accent-color: var(--terracotta-600);
+  cursor: pointer;
+}
+.consent a { color: var(--terracotta-600); text-decoration: underline; }
 .form-result {
   display: none;
   text-align: center;
@@ -1469,7 +1487,8 @@ a[href^="tel:"] { position: relative; }
       </div>
       <div class="footer__bottom">
         <span>© 2026 РПД. Все права защищены.</span>
-        <a href="#">Политика конфиденциальности</a>
+        <a href="politika-konfidencialnosti.html">Политика конфиденциальности</a>
+        <a href="soglasie-na-obrabotku-pdn.html">Согласие на обработку персональных данных</a>
       </div>
     </div>
   </footer>
@@ -1485,7 +1504,7 @@ a[href^="tel:"] { position: relative; }
         <div class="field"><label>Ваше имя</label><input type="text" name="Имя" placeholder="Как к вам обращаться" required></div>
         <div class="field"><label>Телефон</label><input type="tel" name="Телефон" placeholder="+7 (___) ___-__-__" required></div>
         <button type="submit" class="btn btn--primary btn--block">Жду звонка</button>
-        <p class="form__note">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
+        <label class="consent"><input type="checkbox" name="Согласие на обработку ПДн" value="Да" required><span>Даю <a href="soglasie-na-obrabotku-pdn.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> в соответствии с <a href="politika-konfidencialnosti.html" target="_blank" rel="noopener">политикой конфиденциальности</a></span></label>
         <div class="form-result"></div>
       </form>
     </div>
