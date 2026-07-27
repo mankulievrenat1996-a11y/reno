@@ -16,6 +16,15 @@ $root = Split-Path -Parent $PSScriptRoot
 $sshKey = Join-Path $env:USERPROFILE '.ssh\id_ed25519_rpd_deploy'
 $configFile = Join-Path $env:USERPROFILE '.rpd-deploy\timeweb.env'
 
+# Pinned to the native Windows binaries, not resolved via PATH: when this
+# script runs from the git pre-push hook (spawned through Git Bash), PATH
+# puts Git's own MSYS tar.exe first, which misparses "C:\..." as a remote
+# "host:path" spec ("Cannot connect to C: resolve failed"). The System32
+# copies avoid that ambiguity regardless of what invoked this script.
+$tarExe = Join-Path $env:WINDIR 'System32\tar.exe'
+$sshExe = Join-Path $env:WINDIR 'System32\OpenSSH\ssh.exe'
+$scpExe = Join-Path $env:WINDIR 'System32\OpenSSH\scp.exe'
+
 if (-not (Test-Path $sshKey)) {
   Write-Host "Timeweb deploy skipped: SSH key not found at $sshKey"
   exit 0
@@ -47,13 +56,13 @@ $remoteArchive = '/tmp/rpd-deploy.tar.gz'
 Push-Location $root
 try {
   if (Test-Path $localArchive) { Remove-Item $localArchive -Force }
-  tar czf $localArchive --exclude=".git" --exclude=".claude" --exclude=".superpowers" --exclude=".github" --exclude="docs" --exclude="_site" --exclude="*.md" --exclude=".gitignore" .
+  & $tarExe czf $localArchive --exclude=".git" --exclude=".claude" --exclude=".superpowers" --exclude=".github" --exclude="docs" --exclude="_site" --exclude="*.md" --exclude=".gitignore" .
   if ($LASTEXITCODE -ne 0) { Write-Host "Timeweb deploy: FAILED (tar failed)."; exit 0 }
 
-  scp -i $sshKey -o BatchMode=yes $localArchive "${sshTarget}:${remoteArchive}"
+  & $scpExe -i $sshKey -o BatchMode=yes $localArchive "${sshTarget}:${remoteArchive}"
   if ($LASTEXITCODE -ne 0) { Write-Host "Timeweb deploy: FAILED (upload failed)."; exit 0 }
 
-  ssh -i $sshKey -o BatchMode=yes $sshTarget "rm -rf $remoteNew && mkdir -p $remoteNew && tar xzf $remoteArchive -C $remoteNew && rm -f $remoteArchive && find $remoteNew -type d -exec chmod 755 {} + && find $remoteNew -type f -exec chmod 644 {} + && rm -rf $remoteOld && mv $remoteLive $remoteOld && mv $remoteNew $remoteLive && rm -rf $remoteOld && chown -R www-data:www-data $remoteLive"
+  & $sshExe -i $sshKey -o BatchMode=yes $sshTarget "rm -rf $remoteNew && mkdir -p $remoteNew && tar xzf $remoteArchive -C $remoteNew && rm -f $remoteArchive && find $remoteNew -type d -exec chmod 755 {} + && find $remoteNew -type f -exec chmod 644 {} + && rm -rf $remoteOld && mv $remoteLive $remoteOld && mv $remoteNew $remoteLive && rm -rf $remoteOld && chown -R www-data:www-data $remoteLive"
   if ($LASTEXITCODE -eq 0) {
     Write-Host "Timeweb deploy: done."
   } else {
