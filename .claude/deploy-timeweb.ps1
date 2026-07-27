@@ -1,49 +1,65 @@
-# Syncs the site to the Timeweb Cloud S3 bucket. Runs locally (no GitHub
-# involved) - triggered automatically by the git pre-push hook, or run by
-# hand any time with: powershell -File .claude\deploy-timeweb.ps1
+# Deploys the site to the Timeweb VPS over SSH (no GitHub, no S3 - the
+# site is served straight from the VPS by nginx). Runs locally, triggered
+# automatically by the git pre-push hook, or by hand any time with:
+#   powershell -File .claude\deploy-timeweb.ps1
 #
-# Credentials come from .claude\timeweb.env (gitignored, never committed).
-# That file must define three lines:
-#   AWS_ACCESS_KEY_ID=...
-#   AWS_SECRET_ACCESS_KEY=...
-#   TIMEWEB_S3_BUCKET=...
+# Connection settings live outside this repo, in a plain file at
+# %USERPROFILE%\.rpd-deploy\timeweb.env (never committed), with three lines:
+#   DEPLOY_HOST=...
+#   DEPLOY_USER=...
+#   DEPLOY_REMOTE_PATH=...
+# Auth is a dedicated SSH key at %USERPROFILE%\.ssh\id_ed25519_rpd_deploy
+# (public half authorized on the server, private half never leaves this
+# machine, no password involved).
 
 $root = Split-Path -Parent $PSScriptRoot
-$envFile = Join-Path $PSScriptRoot 'timeweb.env'
+$sshKey = Join-Path $env:USERPROFILE '.ssh\id_ed25519_rpd_deploy'
+$configFile = Join-Path $env:USERPROFILE '.rpd-deploy\timeweb.env'
 
-if (Test-Path $envFile) {
-  Get-Content $envFile | ForEach-Object {
-    if ($_ -match '^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)\s*$') {
-      [System.Environment]::SetEnvironmentVariable($matches[1], $matches[2], 'Process')
-    }
-  }
+if (-not (Test-Path $sshKey)) {
+  Write-Host "Timeweb deploy skipped: SSH key not found at $sshKey"
+  exit 0
 }
-
-if (-not $env:AWS_ACCESS_KEY_ID -or -not $env:AWS_SECRET_ACCESS_KEY -or -not $env:TIMEWEB_S3_BUCKET) {
-  Write-Host "Timeweb deploy skipped: missing credentials."
-  Write-Host "Create .claude\timeweb.env with AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, TIMEWEB_S3_BUCKET."
+if (-not (Test-Path $configFile)) {
+  Write-Host "Timeweb deploy skipped: config not found at $configFile"
   exit 0
 }
 
-$env:AWS_DEFAULT_REGION = 'ru-1'
-$bucket = $env:TIMEWEB_S3_BUCKET
+Get-Content $configFile | ForEach-Object {
+  if ($_ -match '^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)\s*$') {
+    Set-Variable -Name $matches[1] -Value $matches[2]
+  }
+}
+
+if (-not $DEPLOY_HOST -or -not $DEPLOY_USER -or -not $DEPLOY_REMOTE_PATH) {
+  Write-Host "Timeweb deploy skipped: incomplete config in $configFile"
+  exit 0
+}
+
+$sshTarget = "$DEPLOY_USER@$DEPLOY_HOST"
+$remoteLive = $DEPLOY_REMOTE_PATH
+$remoteNew = "$DEPLOY_REMOTE_PATH`_new"
+$remoteOld = "$DEPLOY_REMOTE_PATH`_old"
+
+$localArchive = Join-Path $env:TEMP 'rpd-deploy.tar.gz'
+$remoteArchive = '/tmp/rpd-deploy.tar.gz'
 
 Push-Location $root
 try {
-  py -m awscli --endpoint-url https://s3.twcstorage.ru s3 sync . "s3://$bucket" `
-    --delete `
-    --exclude ".git/*" `
-    --exclude ".claude/*" `
-    --exclude ".superpowers/*" `
-    --exclude "docs/*" `
-    --exclude "_site/*" `
-    --exclude "*.md"
+  if (Test-Path $localArchive) { Remove-Item $localArchive -Force }
+  tar czf $localArchive --exclude=".git" --exclude=".claude" --exclude=".superpowers" --exclude=".github" --exclude="docs" --exclude="_site" --exclude="*.md" --exclude=".gitignore" .
+  if ($LASTEXITCODE -ne 0) { Write-Host "Timeweb deploy: FAILED (tar failed)."; exit 0 }
 
+  scp -i $sshKey -o BatchMode=yes $localArchive "${sshTarget}:${remoteArchive}"
+  if ($LASTEXITCODE -ne 0) { Write-Host "Timeweb deploy: FAILED (upload failed)."; exit 0 }
+
+  ssh -i $sshKey -o BatchMode=yes $sshTarget "rm -rf $remoteNew && mkdir -p $remoteNew && tar xzf $remoteArchive -C $remoteNew && rm -f $remoteArchive && find $remoteNew -type d -exec chmod 755 {} + && find $remoteNew -type f -exec chmod 644 {} + && rm -rf $remoteOld && mv $remoteLive $remoteOld && mv $remoteNew $remoteLive && rm -rf $remoteOld && chown -R www-data:www-data $remoteLive"
   if ($LASTEXITCODE -eq 0) {
     Write-Host "Timeweb deploy: done."
   } else {
-    Write-Host "Timeweb deploy: FAILED (exit code $LASTEXITCODE)."
+    Write-Host "Timeweb deploy: FAILED (remote extract/swap failed)."
   }
 } finally {
+  if (Test-Path $localArchive) { Remove-Item $localArchive -Force }
   Pop-Location
 }
