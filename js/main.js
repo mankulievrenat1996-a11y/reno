@@ -146,6 +146,9 @@
   // тихо отклоняет такие отправки. Это и есть работающий аналог капчи для
   // форм, отправляемых через AJAX (визуальная капча FormSubmit показывается
   // только при обычной отправке с перезагрузкой страницы, здесь её не будет).
+  var FIELD_MAX_LENGTH = { text: 100, tel: 20, email: 100 };
+  var TEXT_FIELD_SELECTOR = 'input[type="text"], input[type="tel"], input[type="email"]';
+
   document.querySelectorAll('form[data-form]').forEach(function (form) {
     if (!form.querySelector('input[name="_honey"]')) {
       var honey = document.createElement('input');
@@ -156,6 +159,20 @@
       honey.autocomplete = 'off';
       form.appendChild(honey);
     }
+
+    // Метка времени появления формы — вторая ловушка для ботов (см. ниже,
+    // в обработчике submit): скрипты заполняют и шлют форму за миллисекунды,
+    // человек так быстро физически не успевает.
+    form.dataset.loadedAt = String(Date.now());
+
+    // Жёсткий предел длины полей — защита от гигантских payload'ов в спам-
+    // и DoS-заявках (ограничение "required"/type в HTML саму длину не режет).
+    form.querySelectorAll(TEXT_FIELD_SELECTOR).forEach(function (input) {
+      if (input.maxLength < 0) input.maxLength = FIELD_MAX_LENGTH[input.type] || 100;
+    });
+    form.querySelectorAll('textarea').forEach(function (ta) {
+      if (ta.maxLength < 0) ta.maxLength = 1500;
+    });
   });
 
   function buildResultCard(state) {
@@ -164,6 +181,12 @@
         '<h4>Спасибо, заявка принята</h4>' +
         '<p>Свяжемся с вами в ближайшее время</p>' +
         '<div class="form-result__actions"><a class="btn btn--primary" href="index.html">На главную</a></div>';
+    }
+    if (state === 'toofast') {
+      return '<div class="form-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 8v4l3 3M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg></div>' +
+        '<h4>Заявку уже отправляем</h4>' +
+        '<p>Мы уже получили заявку с этого браузера — подождите немного перед повторной отправкой</p>' +
+        '<div class="form-result__actions"><button type="button" class="form-result__retry" data-retry>Понятно</button></div>';
     }
     return '<div class="form-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></div>' +
       '<h4>Не получилось отправить</h4>' +
@@ -203,7 +226,32 @@
         return;
       }
 
+      // Ловушка по времени: если между появлением формы на странице и
+      // отправкой прошло меньше 3 секунд — это скрипт, а не человек.
+      var loadedAt = parseInt(form.dataset.loadedAt, 10) || 0;
+      if (Date.now() - loadedAt < 3000) {
+        showFormResult(form, 'success');
+        return;
+      }
+
+      // Ограничение частоты: не больше одной отправки раз в 15 секунд с
+      // одного браузера — защищает от скриптов, которые дёргают отправку
+      // формы в цикле, и от случайных повторных кликов.
+      var lastSubmit = parseInt(localStorage.getItem('aqLastFormSubmit') || '0', 10);
+      if (Date.now() - lastSubmit < 15000) {
+        showFormResult(form, 'toofast');
+        return;
+      }
+
       var data = new FormData(form);
+
+      // Чистим однострочные поля от переносов строк — иначе через них
+      // можно подставить в письмо лишние заголовки (email header injection).
+      form.querySelectorAll(TEXT_FIELD_SELECTOR).forEach(function (input) {
+        if (!input.name) return;
+        data.set(input.name, input.value.replace(/[\r\n]+/g, ' ').trim());
+      });
+
       data.append('_subject', 'Новая заявка с сайта РПД');
       data.append('_template', 'table');
       data.append('_captcha', 'true');
@@ -217,6 +265,7 @@
       })
       .then(function (r) { return r.json(); })
       .then(function () {
+        localStorage.setItem('aqLastFormSubmit', String(Date.now()));
         showFormResult(form, 'success');
         if (form.closest('.modal-overlay')) { setTimeout(closeModal, 2500); }
       })
