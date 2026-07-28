@@ -233,7 +233,7 @@ h3 { font-size: 22px; }
   position: relative;
   background:
     linear-gradient(115deg, rgba(33,23,18,.94) 0%, rgba(33,23,18,.88) 32%, rgba(44,31,24,.72) 55%, rgba(44,31,24,.55) 100%),
-    url('assets/hero-pipeline.jpg');
+    url('assets/hero-pipeline.webp');
   background-size: cover;
   background-position: center;
   color: #fff;
