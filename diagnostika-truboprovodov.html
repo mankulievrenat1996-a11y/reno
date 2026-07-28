@@ -257,11 +257,12 @@ h3 { font-size: 22px; }
 .topbar__inner {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 20px;
   padding: 9px 0;
 }
 
+.topbar__left { display: flex; align-items: center; gap: 22px; }
 .topbar__right { display: flex; align-items: center; gap: 22px; }
 .topbar a { transition: color .2s; }
 .topbar a:hover { color: #fff; }
@@ -1323,9 +1324,11 @@ a[href^="tel:"] { position: relative; }
 
   <div class="topbar">
     <div class="container topbar__inner">
-      <div class="topbar__right">
+      <div class="topbar__left">
         <span>Аварийная служба 24/7</span>
         <a href="mailto:v.bur@metallcore.pro">v.bur@metallcore.pro</a>
+      </div>
+      <div class="topbar__right">
         <a class="topbar__phone" href="tel:+79818345864">+7 (981) 834-58-64</a>
       </div>
     </div>
@@ -1478,6 +1481,7 @@ a[href^="tel:"] { position: relative; }
             <a href="uslugi#avariya">Аварийный выезд 24/7</a>
             <a href="uslugi#proektirovanie">Проектирование и монтаж</a>
             <a href="uslugi#podklyuchenie">Подключение абонентов</a>
+            <a href="uslugi#vosstanovlenie">Восстановление сетей</a>
             <a href="uslugi#remont">Ремонт под давлением</a>
             <a href="uslugi#diagnostika">Диагностика и обследование</a>
           </div>
