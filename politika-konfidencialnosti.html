@@ -206,12 +206,11 @@ h3 { font-size: 22px; }
 .topbar__inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 20px;
   padding: 9px 0;
 }
-.topbar__regions { display: flex; align-items: center; gap: 8px; opacity: .9; }
-.topbar__regions svg { width: 15px; height: 15px; opacity: .8; }
+
 .topbar__right { display: flex; align-items: center; gap: 22px; }
 .topbar a { transition: color .2s; }
 .topbar a:hover { color: #fff; }
@@ -254,6 +253,9 @@ h3 { font-size: 22px; }
 .nav > .btn { display: none; }
 
 .header__actions { display: flex; align-items: center; gap: 14px; }
+.tg-link { display: flex; align-items: center; color: #29A9EA; transition: transform .2s, color .2s; }
+.tg-link:hover { color: #1c8fd1; transform: translateY(-2px); }
+.tg-link svg { width: 28px; height: 28px; }
 
 .burger { display: none; flex-direction: column; gap: 5px; padding: 8px; }
 .burger span { width: 26px; height: 2.5px; background: var(--ink-800); border-radius: 2px; transition: .25s; }
@@ -1270,10 +1272,6 @@ a[href^="tel:"] { position: relative; }
 
   <div class="topbar">
     <div class="container topbar__inner">
-      <div class="topbar__regions">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        Москва · МО · Санкт-Петербург · ЛО
-      </div>
       <div class="topbar__right">
         <span>Аварийная служба 24/7</span>
         <a href="mailto:v.bur@metallcore.pro">v.bur@metallcore.pro</a>
@@ -1298,6 +1296,7 @@ a[href^="tel:"] { position: relative; }
         <a href="#" class="btn btn--primary" data-open-modal>Заказать звонок</a>
       </nav>
       <div class="header__actions">
+        <a href="https://t.me/+79818345864" class="tg-link" target="_blank" rel="noopener noreferrer" aria-label="Написать в Telegram" title="Telegram"><svg viewBox="0 0 496 512" fill="currentColor"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm121.8 169.9l-40.7 191.8c-3 13.6-11.1 16.9-22.4 10.5l-62-45.7-29.9 28.8c-3.3 3.3-6.1 6.1-12.5 6.1l4.4-63.1 114.9-103.8c5-4.5-1.1-7-7.7-2.5l-142 89.4-61.2-19.1c-13.3-4.2-13.6-13.3 2.8-19.7l239.1-92.2c11.1-4.2 20.8 2.7 17.2 19.5z"/></svg></a>
         <a href="#" class="btn btn--primary" data-open-modal>Заказать звонок</a>
       </div>
       <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
