@@ -282,7 +282,7 @@ h3 { font-size: 22px; }
 .nav-services__menu {
   position: absolute;
   left: 0;
-  top: calc(100% + 10px);
+  top: calc(100% - 2px);
   width: 270px;
   padding: 10px;
   display: grid;
@@ -295,6 +295,7 @@ h3 { font-size: 22px; }
   visibility: hidden;
   transform: translateY(8px);
   transition: opacity .18s, transform .18s, visibility .18s;
+  pointer-events: auto;
   z-index: 160;
 }
 .nav__item--services:hover .nav-services__menu,
@@ -338,8 +339,8 @@ h3 { font-size: 22px; }
   content: "";
   position: absolute; inset: 0;
   background-image:
-    linear-gradient(rgba(224,150,102,.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(224,150,102,.06) 1px, transparent 1px);
+    linear-gradient(rgba(242,169,0,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(242,169,0,.06) 1px, transparent 1px);
   background-size: 46px 46px;
   mask-image: radial-gradient(120% 90% at 70% 20%, #000 30%, transparent 78%);
   -webkit-mask-image: radial-gradient(120% 90% at 70% 20%, #000 30%, transparent 78%);
@@ -373,8 +374,8 @@ h3 { font-size: 22px; }
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: rgba(217,139,98,.16);
-  border: 1px solid rgba(217,139,98,.32);
+  background: rgba(242,169,0,.16);
+  border: 1px solid rgba(242,169,0,.32);
   color: #E2D6C8;
   padding: 9px 16px;
   border-radius: 100px;
@@ -416,7 +417,7 @@ h3 { font-size: 22px; }
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(135deg, rgba(217,139,98,.08) 0 10px, transparent 10px 20px);
+  background: repeating-linear-gradient(135deg, rgba(242,169,0,.08) 0 10px, transparent 10px 20px);
 }
 .hero__panel-visual-label {
   position: relative;
@@ -614,7 +615,7 @@ h3 { font-size: 22px; }
   color: var(--gold-text); background: var(--sand-100);
   padding: 6px 13px; border-radius: 100px; flex: none;
 }
-.section--navy .dir-head .dir-num { color: var(--terracotta-400); background: rgba(217,139,98,.14); }
+.section--navy .dir-head .dir-num { color: var(--terracotta-400); background: rgba(242,169,0,.14); }
 .sub-title { font-size: 22px; font-weight: 800; margin: 46px 0 22px; color: var(--ink-800); letter-spacing: -.01em; }
 .section--navy .sub-title { color: #fff; }
 .sub-title:first-child { margin-top: 0; }
@@ -945,6 +946,36 @@ h3 { font-size: 22px; }
   color: var(--muted);
   font-size: 15.5px;
 }
+
+.service-content {
+  max-width: var(--container);
+}
+.service-content .lead {
+  max-width: 920px;
+  margin-bottom: 30px;
+}
+.service-content h2 {
+  margin-top: 58px;
+  margin-bottom: 22px;
+}
+.service-content .cards + h2,
+.service-content .check-list + h2,
+.service-content .proc-list + h2,
+.service-content .faq + .related-services {
+  margin-top: 64px;
+}
+.service-content .faq {
+  margin-top: 20px;
+}
+.related-services {
+  margin-top: 58px;
+}
+.related-services h2 {
+  margin-top: 0;
+}
+.related-services .cards {
+  margin-top: 20px;
+}
 @media (max-width: 760px) {
   .service-gallery { grid-template-columns: 1fr; }
   .service-gallery__main { min-height: 260px; }
@@ -1121,9 +1152,14 @@ a[href^="tel:"] { position: relative; }
    ВНУТРЕННИЙ ГЕРОЙ (шапка страниц)
    ========================================================= */
 .page-hero {
-  background: linear-gradient(135deg, var(--ink-800), var(--ink-900));
+  background:
+    linear-gradient(90deg, rgba(13,11,8,.92), rgba(13,11,8,.68) 52%, rgba(13,11,8,.34)),
+    var(--hero-photo),
+    linear-gradient(135deg, var(--ink-800), var(--ink-900));
+  background-size: cover;
+  background-position: center;
   color: #fff;
-  padding: 56px 0 60px;
+  padding: 76px 0 86px;
   position: relative; overflow: hidden;
 }
 .page-hero::after {
@@ -1455,7 +1491,7 @@ a[href^="tel:"] { position: relative; }
   <header class="header">
     <div class="container header__inner">
       <a href="/" class="logo">
-        <img class="logo__mark" src="assets/logo.png" alt="РПД — работы под давлением" width="42" height="42">
+        <img class="logo__mark" src="/wp-content/themes/rpd-service/assets/img/logo.png" alt="РПД — работы под давлением" width="42" height="42">
         <span class="logo__text"><span class="logo__name">РПД</span><span class="logo__tag">Работы Под Давлением</span></span>
       </a>
       <nav class="nav">
@@ -1488,7 +1524,7 @@ a[href^="tel:"] { position: relative; }
   </header>
   <div class="nav-backdrop"></div>
 
-  <section class="page-hero">
+  <section class="page-hero service-hero" style="--hero-photo:url('assets/D100 IMG-20240426-WA0010.jpg')">
     <div class="container">
       <div class="crumbs"><a href="/">Главная</a> / <a href="uslugi">Услуги</a> / <span>Врезка в водопровод</span></div>
       <h1>Врезка в водопровод под давлением</h1>
@@ -1498,7 +1534,7 @@ a[href^="tel:"] { position: relative; }
   </section>
 
   <section class="section">
-    <div class="container" style="max-width:860px">
+    <div class="container service-content">
       <p class="lead">Врезка в водопровод под давлением помогает подключить абонента, здание, цех, поливочную линию или пожарный контур без остановки подачи воды. Узел подбираем по диаметру, материалу трубы, давлению и качеству доступа: подвал, колодец, траншея, техподполье или промышленная площадка.</p>
 
       <div class="service-gallery" data-reveal>
@@ -1523,29 +1559,34 @@ a[href^="tel:"] { position: relative; }
         <div class="panel-card"><span class="panel-tag">Под давлением</span><h3>Без остановки потока</h3><p>Работаем по действующей линии, чтобы не отключать потребителей и не сливать систему целиком.</p></div>
         <div class="panel-card"><span class="panel-tag">15-500 мм</span><h3>Подбор узла под объект</h3><p>Учитываем диаметр, материал, давление, среду, доступ и требования эксплуатирующей организации.</p></div>
       </div>
-      <h2 style="margin-top:40px">Где применяем</h2><ul class="check-list">
+      <h2>Где применяем</h2><ul class="check-list">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> городские и поселковые водопроводные сети</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> внутридомовые стояки и магистрали ХВС или ГВС</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> пожарные водопроводы, насосные и технические линии</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> производственные сети с технической, оборотной или очищенной водой</li>
       </ul>
-      <h2 style="margin-top:40px">Порядок работ</h2><ol class="proc-list"><li><strong>Заявка и исходные данные.</strong> Уточняем задачу, адрес, диаметр, материал трубы, рабочую среду, давление и доступ.</li><li><strong>Осмотр и решение.</strong> Инженер проверяет участок и выбирает безопасный способ врезки.</li><li><strong>Монтаж узла.</strong> Ставим седелку, патрубок или фланцевый узел, монтируем арматуру и проверяем герметичность.</li><li><strong>Сверление под давлением.</strong> Выполняем врезку через запорный орган, контролируем узел и сдаем результат.</li></ol><ul class="check-list" style="margin-top:18px">
+      <h2>Порядок работ</h2><ol class="proc-list"><li><strong>Заявка и исходные данные.</strong> Уточняем задачу, адрес, диаметр, материал трубы, рабочую среду, давление и доступ.</li><li><strong>Осмотр и решение.</strong> Инженер проверяет участок и выбирает безопасный способ врезки.</li><li><strong>Монтаж узла.</strong> Ставим седелку, патрубок или фланцевый узел, монтируем арматуру и проверяем герметичность.</li><li><strong>Сверление под давлением.</strong> Выполняем врезку через запорный орган, контролируем узел и сдаем результат.</li></ol><ul class="check-list" style="margin-top:18px">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> уточняем диаметр, материал, давление и расположение действующей трубы</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> подбираем седелку, фланцевый узел, задвижку или шаровый кран</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> монтируем узел и проверяем герметичность до вскрытия стенки трубы</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> выполняем сверление под давлением и передаем готовую точку подключения</li>
       </ul>
-      <h2 style="margin-top:40px">Что получает заказчик</h2><div class="cards cards--2"><div class="panel-card"><span class="panel-tag">Рабочие параметры</span><ul class="check-list">
+      <h2>Что получает заказчик</h2><div class="cards cards--2"><div class="panel-card"><span class="panel-tag">Рабочие параметры</span><ul class="check-list">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> подключение без массового отключения потребителей</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> минимум земляных работ и простойный период только на участке монтажа</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> готовый герметичный узел с запорной арматурой</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> понятную смету до начала работ и гарантию на выполненный монтаж</li>
           </ul></div><div class="panel-card"><span class="panel-tag">Важно</span><p>Для аварийных ситуаций можем совместить врезку с локальным перекрытием или временным байпасом, чтобы сохранить подачу воды на соседние участки.</p></div></div>
-      <h2 style="margin-top:40px">Частые вопросы</h2><div class="faq" style="margin-top:20px">        <div class="faq__item"><button class="faq__q">Можно ли выполнить работу без отключения потребителей? <span class="plus"></span></button><div class="faq__a"><p>Да, если параметры объекта позволяют безопасно выполнить Врезка в водопровод под давлением под давлением. Возможность подтверждаем после проверки диаметра, материала, среды, давления и доступа.</p></div></div>
+      <h2>Частые вопросы</h2><div class="faq">        <div class="faq__item"><button class="faq__q">Можно ли выполнить работу без отключения потребителей? <span class="plus"></span></button><div class="faq__a"><p>Да, если параметры объекта позволяют безопасно выполнить Врезка в водопровод под давлением под давлением. Возможность подтверждаем после проверки диаметра, материала, среды, давления и доступа.</p></div></div>
         <div class="faq__item"><button class="faq__q">Что нужно сообщить для расчета? <span class="plus"></span></button><div class="faq__a"><p>Нужны адрес, диаметр и материал трубы, рабочая среда, давление, место расположения участка и задача: новый отвод, байпас, ремонтный узел или подключение потребителя.</p></div></div>
         <div class="faq__item"><button class="faq__q">Когда будет точная смета? <span class="plus"></span></button><div class="faq__a"><p>Ориентир называем по исходным данным, а точную смету фиксируем после осмотра. Так учитываем доступ, арматуру, земляные работы и реальные условия монтажа.</p></div></div>
       </div>
-      <h2 style="margin-top:40px">Смотрите также</h2><div class="cards cards--2" style="margin-top:20px"><a href="vrezka-v-truboprovod-pod-davleniem" class="card"><h3>Врезка в трубопровод под давлением</h3><p>Общая страница по технологии и вариантам подключения к действующим линиям.</p></a><a href="stoimost-vrezki-pod-davleniem" class="card"><h3>Стоимость врезки под давлением</h3><p>Какие факторы влияют на цену работ и почему смета считается после осмотра.</p></a></div>
+      <div class="related-services">
+        <h2>Смотрите также</h2>
+        <div class="cards cards--2">
+          <a href="vrezka-v-truboprovod-pod-davleniem" class="card"><h3>Врезка в трубопровод под давлением</h3><p>Когда нужна общая врезка в действующую линию без отключения потребителей.</p></a><a href="stoimost-vrezki-pod-davleniem" class="card"><h3>Стоимость врезки под давлением</h3><p>Что влияет на смету: диаметр, материал, давление, доступ и восстановительные работы.</p></a>
+        </div>
+      </div>
       <div style="margin-top:40px;display:flex;gap:14px;flex-wrap:wrap"><a href="uslugi" class="btn btn--outline" style="border-color:var(--border);color:var(--ink-800)">Все услуги</a><a href="#" class="btn btn--primary" data-open-modal data-service="Врезка в водопровод под давлением">Оставить заявку</a></div>
     </div>
   </section>
@@ -1571,7 +1612,7 @@ a[href^="tel:"] { position: relative; }
       <div class="footer__grid">
         <div>
           <div class="logo">
-            <img class="logo__mark" src="assets/logo.png" alt="РПД — работы под давлением" width="42" height="42">
+            <img class="logo__mark" src="/wp-content/themes/rpd-service/assets/img/logo.png" alt="РПД — работы под давлением" width="42" height="42">
             <span class="logo__text"><span class="logo__name">РПД</span><span class="logo__tag">Работы Под Давлением</span></span>
           </div>
           <p class="footer__about">Врезка, перекрытие и ремонт трубопроводов под давлением без остановки потока. Аварийная служба 24/7.</p>
