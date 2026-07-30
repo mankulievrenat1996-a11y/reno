@@ -4,9 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://formsubmit.co; form-action 'self' https://formsubmit.co; frame-ancestors 'self'; frame-src 'none'; object-src 'none'; base-uri 'self';">
-  <title>Страница не найдена — РПД</title>
-  <meta name="robots" content="noindex, nofollow">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <title>Врезка в трубопровод под давлением</title>
+  <meta name="description" content="Выполняем врезку в действующий трубопровод под давлением без остановки потока: обследование, подбор узла, монтаж, опрессовка и сдача.">
+  <link rel="canonical" href="https://rpd-service.ru/vrezka-v-truboprovod-pod-davleniem">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="РПД">
+  <meta property="og:title" content="Врезка в трубопровод под давлением">
+  <meta property="og:description" content="Выполняем врезку в действующий трубопровод под давлением без остановки потока: обследование, подбор узла, монтаж, опрессовка и сдача.">
+  <meta property="og:url" content="https://rpd-service.ru/vrezka-v-truboprovod-pod-davleniem">
+  <meta property="og:image" content="https://rpd-service.ru/assets/hero-pipeline.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Врезка в трубопровод под давлением">
+  <meta name="twitter:description" content="Выполняем врезку в действующий трубопровод под давлением без остановки потока: обследование, подбор узла, монтаж, опрессовка и сдача.">
+  <meta name="twitter:image" content="https://rpd-service.ru/assets/hero-pipeline.jpg">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Врезка в трубопровод под давлением","description":"Выполняем врезку в действующий трубопровод под давлением без остановки потока: обследование, подбор узла, монтаж, опрессовка и сдача.","provider":{"@type":"Organization","name":"РПД"},"areaServed":["Москва","Московская область","Санкт-Петербург","Ленинградская область"],"serviceType":"Врезка в трубопровод под давлением"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://rpd-service.ru/"},{"@type":"ListItem","position":2,"name":"Услуги","item":"https://rpd-service.ru/uslugi"},{"@type":"ListItem","position":3,"name":"Врезка в трубопровод под давлением","item":"https://rpd-service.ru/vrezka-v-truboprovod-pod-davleniem"}]}</script>  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <!--CSS--><style>
@@ -892,6 +905,52 @@ h3 { font-size: 22px; }
 /* =========================================================
    CTA-ПОЛОСА
    ========================================================= */
+.service-gallery {
+  margin-top: 34px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(240px, .85fr);
+  gap: 18px;
+  align-items: stretch;
+}
+.service-gallery__main,
+.service-gallery__item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  background: var(--ink-900);
+}
+.service-gallery__main { min-height: 360px; }
+.service-gallery__side { display: grid; gap: 18px; }
+.service-gallery__item { min-height: 171px; }
+.service-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.service-gallery__caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 18px 20px;
+  color: #fff;
+  font-weight: 700;
+  background: linear-gradient(180deg, transparent, rgba(13,11,8,.82));
+}
+.service-gallery__note {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 15.5px;
+}
+@media (max-width: 760px) {
+  .service-gallery { grid-template-columns: 1fr; }
+  .service-gallery__main { min-height: 260px; }
+  .service-gallery__item { min-height: 190px; }
+}
+
 .cta {
   background: linear-gradient(135deg, var(--terracotta-600), var(--ink-800));
   border-radius: var(--r-lg);
@@ -1404,7 +1463,7 @@ a[href^="tel:"] { position: relative; }
 
           <div class="nav__item nav__item--services">
             <details class="nav-services">
-              <summary class="nav-services__summary">Услуги</summary>
+              <summary class="nav-services__summary active">Услуги</summary>
               <div class="nav-services__menu" aria-label="Услуги">
                 <a href="uslugi">Все услуги</a>
                 <a href="vrezka-v-truboprovod-pod-davleniem">Врезка в трубопровод</a>
@@ -1429,25 +1488,84 @@ a[href^="tel:"] { position: relative; }
   </header>
   <div class="nav-backdrop"></div>
 
-  <section class="section section--navy error-page">
+  <section class="page-hero">
     <div class="container">
-      <div class="error-page__code" aria-hidden="true">404</div>
-      <h1>Страница не найдена</h1>
-      <p>Возможно, ссылка устарела или страница была перемещена. Загляните на главную или посмотрите список услуг.</p>
-      <div class="error-page__actions">
-        <a href="/" class="btn btn--primary">На главную</a>
-        <a href="uslugi" class="btn btn--outline">Наши услуги</a>
+      <div class="crumbs"><a href="/">Главная</a> / <a href="uslugi">Услуги</a> / <span>Врезка в трубопровод</span></div>
+      <h1>Врезка в трубопровод под давлением</h1>
+      <p>Врезаем новые ответвления в действующие трубопроводы без слива системы и остановки потребителей. Работаем со сталью, чугуном, ПНД, ППР, металлопластиком и медью на диаметрах от 15 до 500 мм.</p>
+      <div class="hero__cta"><a href="#" class="btn btn--primary" data-open-modal data-service="Врезка в трубопровод под давлением">Получить консультацию</a></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:860px">
+      <p class="lead">Врезка в трубопровод под давлением нужна, когда к действующей линии требуется подключить новый отвод, узел учета, перемычку, байпас или технологическую ветку, но отключать сеть нельзя или слишком дорого. Перед работой обследуем участок, уточняем среду, давление, материал и доступ, затем подбираем седелку, патрубок, запорную арматуру и способ сверления.</p>
+
+      <div class="service-gallery" data-reveal>
+        <figure class="service-gallery__main">
+          <img src="assets/IMG-20240426-WA0035.jpg" alt="Готовый байпас и узел врезки в траншее" loading="lazy">
+          <figcaption class="service-gallery__caption">Готовый байпас и узел врезки в траншее</figcaption>
+        </figure>
+        <div class="service-gallery__side">
+          <figure class="service-gallery__item">
+            <img src="assets/D100 IMG-20240426-WA0010.jpg" alt="Монтаж узла на действующем трубопроводе" loading="lazy">
+            <figcaption class="service-gallery__caption">Монтаж узла на действующем трубопроводе</figcaption>
+          </figure>
+          <figure class="service-gallery__item">
+            <img src="assets/photo_5334783689184973056_y.jpg" alt="Временная линия для работ под давлением" loading="lazy">
+            <figcaption class="service-gallery__caption">Временная линия для работ под давлением</figcaption>
+          </figure>
+        </div>
       </div>
-      <div class="error-page__phone">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+      <p class="service-gallery__note">Реальные работы: временный байпас, узлы перекрытия и монтаж отвода на действующей линии.</p>
+
+      <div class="cards cards--2" style="margin-top:34px">
+        <div class="panel-card"><span class="panel-tag">Под давлением</span><h3>Без остановки потока</h3><p>Работаем по действующей линии, чтобы не отключать потребителей и не сливать систему целиком.</p></div>
+        <div class="panel-card"><span class="panel-tag">15-500 мм</span><h3>Подбор узла под объект</h3><p>Учитываем диаметр, материал, давление, среду, доступ и требования эксплуатирующей организации.</p></div>
+      </div>
+      <h2 style="margin-top:40px">Когда заказывают врезку в трубопровод</h2><ul class="check-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> подключение нового здания, цеха, стояка или технологической линии к действующей сети</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> монтаж отвода для байпаса, временной перемычки или резервного питания</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> перенос узла учета, установка дополнительной арматуры или контрольной точки</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> ремонтная врезка перед перекрытием аварийного участка без остановки всей магистрали</li>
+      </ul>
+      <h2 style="margin-top:40px">Как выполняем работу</h2><ol class="proc-list"><li><strong>Заявка и исходные данные.</strong> Уточняем задачу, адрес, диаметр, материал трубы, рабочую среду, давление и доступ.</li><li><strong>Осмотр и решение.</strong> Инженер проверяет участок и выбирает безопасный способ врезки.</li><li><strong>Монтаж узла.</strong> Ставим седелку, патрубок или фланцевый узел, монтируем арматуру и проверяем герметичность.</li><li><strong>Сверление под давлением.</strong> Выполняем врезку через запорный орган, контролируем узел и сдаем результат.</li></ol><ul class="check-list" style="margin-top:18px">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> осматриваем трассу и проверяем доступность места установки узла</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> подбираем арматуру под диаметр, материал трубы, давление и рабочую среду</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> монтируем седелку или приварной патрубок, герметизируем соединение и опрессовываем узел</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> сверлим стенку трубы через запорный орган и передаем готовый отвод в работу</li>
+      </ul>
+      <h2 style="margin-top:40px">С какими трубами работаем</h2><div class="cards cards--2"><div class="panel-card"><span class="panel-tag">Рабочие параметры</span><ul class="check-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> стальные, оцинкованные и нержавеющие трубопроводы</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> чугунные линии, включая ВЧШГ</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> ПНД и полипропиленовые трубы водоснабжения и технологических сетей</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> металлопластик, медь, ПВХ и комбинированные участки после обследования</li>
+          </ul></div><div class="panel-card"><span class="panel-tag">Важно</span><p>Если объект связан с газом, водой или нефтепродуктами, лучше сразу открыть профильную страницу ниже: там описаны ограничения, требования к подготовке и состав работ для конкретной среды.</p></div></div>
+      <h2 style="margin-top:40px">Частые вопросы</h2><div class="faq" style="margin-top:20px">        <div class="faq__item"><button class="faq__q">Можно ли выполнить работу без отключения потребителей? <span class="plus"></span></button><div class="faq__a"><p>Да, если параметры объекта позволяют безопасно выполнить Врезка в трубопровод под давлением под давлением. Возможность подтверждаем после проверки диаметра, материала, среды, давления и доступа.</p></div></div>
+        <div class="faq__item"><button class="faq__q">Что нужно сообщить для расчета? <span class="plus"></span></button><div class="faq__a"><p>Нужны адрес, диаметр и материал трубы, рабочая среда, давление, место расположения участка и задача: новый отвод, байпас, ремонтный узел или подключение потребителя.</p></div></div>
+        <div class="faq__item"><button class="faq__q">Когда будет точная смета? <span class="plus"></span></button><div class="faq__a"><p>Ориентир называем по исходным данным, а точную смету фиксируем после осмотра. Так учитываем доступ, арматуру, земляные работы и реальные условия монтажа.</p></div></div>
+      </div>
+      <h2 style="margin-top:40px">Смотрите также</h2><div class="cards cards--2" style="margin-top:20px"><a href="vrezka-v-truboprovod-pod-davleniem" class="card"><h3>Врезка в трубопровод под давлением</h3><p>Общая страница по технологии и вариантам подключения к действующим линиям.</p></a><a href="stoimost-vrezki-pod-davleniem" class="card"><h3>Стоимость врезки под давлением</h3><p>Какие факторы влияют на цену работ и почему смета считается после осмотра.</p></a></div>
+      <div style="margin-top:40px;display:flex;gap:14px;flex-wrap:wrap"><a href="uslugi" class="btn btn--outline" style="border-color:var(--border);color:var(--ink-800)">Все услуги</a><a href="#" class="btn btn--primary" data-open-modal data-service="Врезка в трубопровод под давлением">Оставить заявку</a></div>
+    </div>
+  </section>
+
+  <section class="section section--sky">
+    <div class="container">
+      <div class="cta" data-reveal>
         <div>
-          <a href="tel:+79818345864">+7 (981) 834-58-64</a>
-          <span class="error-page__phone-label">Не нашли нужное? Просто позвоните</span>
+          <h2>Рассчитаем стоимость работ</h2>
+          <p>Опишите объект, диаметр, материал трубы и задачу. Инженер уточнит детали и предложит способ работ без остановки потока.</p>
+        </div>
+        <div class="cta__actions">
+          <a href="tel:+79818345864" class="cta__phone">+7 (981) 834-58-64 <span>Ежедневно, аварийная служба 24/7</span></a>
+          <a href="#" class="btn btn--light btn--block" data-open-modal data-service="Врезка в трубопровод под давлением">Получить расчет</a>
         </div>
       </div>
     </div>
   </section>
 
+  <section class="section section--tight section--sky"><div class="container"><p class="seo-text">Профессиональная врезка в трубопровод под давлением позволяет подключить новый участок сети без отключения потребителей и без полного слива системы. Метод подходит для плановых подключений, аварийных работ, устройства байпасов, монтажа дополнительной запорной арматуры и организации временных линий. Стоимость зависит от диаметра, материала трубы, давления, среды, доступа к месту работ и необходимости земляных или восстановительных работ. Работаем в Москве, Московской области, Санкт-Петербурге и Ленинградской области. Перед началом работ согласуем технологию, сроки и смету, а после монтажа проверяем герметичность готового узла.</p></div></section>
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
@@ -1467,6 +1585,10 @@ a[href^="tel:"] { position: relative; }
             <a href="uslugi#vosstanovlenie">Восстановление сетей</a>
             <a href="uslugi#remont">Ремонт под давлением</a>
             <a href="uslugi#diagnostika">Диагностика и обследование</a>
+            <a href="vrezka-v-truboprovod-pod-davleniem">Врезка в трубопровод</a>
+            <a href="vrezka-v-gazoprovod-pod-davleniem">Врезка в газопровод</a>
+            <a href="vrezka-v-vodoprovod-pod-davleniem">Врезка в водопровод</a>
+            <a href="vrezka-v-nefteprovod-pod-davleniem">Врезка в нефтепровод</a>
           </div>
         </div>
         <div>
@@ -1520,6 +1642,7 @@ a[href^="tel:"] { position: relative; }
   </div>
 
   <button class="to-top" aria-label="Наверх"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+
   <!--JS--><script>
 /* =========================================================
    РПД — общий скрипт для всех страниц

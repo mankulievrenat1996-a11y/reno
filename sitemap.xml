@@ -45,4 +45,24 @@
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://rpd-service.ru/vrezka-v-truboprovod-pod-davleniem</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rpd-service.ru/vrezka-v-gazoprovod-pod-davleniem</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rpd-service.ru/vrezka-v-vodoprovod-pod-davleniem</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rpd-service.ru/vrezka-v-nefteprovod-pod-davleniem</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

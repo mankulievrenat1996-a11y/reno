@@ -4,9 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://formsubmit.co; form-action 'self' https://formsubmit.co; frame-ancestors 'self'; frame-src 'none'; object-src 'none'; base-uri 'self';">
-  <title>Страница не найдена — РПД</title>
-  <meta name="robots" content="noindex, nofollow">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <title>Врезка в газопровод под давлением</title>
+  <meta name="description" content="Врезка в действующий газопровод под давлением: подготовка узла, монтаж ответвления, контроль герметичности и работа с газовыми сетями.">
+  <link rel="canonical" href="https://rpd-service.ru/vrezka-v-gazoprovod-pod-davleniem">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="РПД">
+  <meta property="og:title" content="Врезка в газопровод под давлением">
+  <meta property="og:description" content="Врезка в действующий газопровод под давлением: подготовка узла, монтаж ответвления, контроль герметичности и работа с газовыми сетями.">
+  <meta property="og:url" content="https://rpd-service.ru/vrezka-v-gazoprovod-pod-davleniem">
+  <meta property="og:image" content="https://rpd-service.ru/assets/hero-pipeline.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Врезка в газопровод под давлением">
+  <meta name="twitter:description" content="Врезка в действующий газопровод под давлением: подготовка узла, монтаж ответвления, контроль герметичности и работа с газовыми сетями.">
+  <meta name="twitter:image" content="https://rpd-service.ru/assets/hero-pipeline.jpg">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Врезка в газопровод под давлением","description":"Врезка в действующий газопровод под давлением: подготовка узла, монтаж ответвления, контроль герметичности и работа с газовыми сетями.","provider":{"@type":"Organization","name":"РПД"},"areaServed":["Москва","Московская область","Санкт-Петербург","Ленинградская область"],"serviceType":"Врезка в газопровод под давлением"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://rpd-service.ru/"},{"@type":"ListItem","position":2,"name":"Услуги","item":"https://rpd-service.ru/uslugi"},{"@type":"ListItem","position":3,"name":"Врезка в газопровод под давлением","item":"https://rpd-service.ru/vrezka-v-gazoprovod-pod-davleniem"}]}</script>  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <!--CSS--><style>
@@ -892,6 +905,52 @@ h3 { font-size: 22px; }
 /* =========================================================
    CTA-ПОЛОСА
    ========================================================= */
+.service-gallery {
+  margin-top: 34px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(240px, .85fr);
+  gap: 18px;
+  align-items: stretch;
+}
+.service-gallery__main,
+.service-gallery__item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  background: var(--ink-900);
+}
+.service-gallery__main { min-height: 360px; }
+.service-gallery__side { display: grid; gap: 18px; }
+.service-gallery__item { min-height: 171px; }
+.service-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.service-gallery__caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 18px 20px;
+  color: #fff;
+  font-weight: 700;
+  background: linear-gradient(180deg, transparent, rgba(13,11,8,.82));
+}
+.service-gallery__note {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 15.5px;
+}
+@media (max-width: 760px) {
+  .service-gallery { grid-template-columns: 1fr; }
+  .service-gallery__main { min-height: 260px; }
+  .service-gallery__item { min-height: 190px; }
+}
+
 .cta {
   background: linear-gradient(135deg, var(--terracotta-600), var(--ink-800));
   border-radius: var(--r-lg);
@@ -1404,7 +1463,7 @@ a[href^="tel:"] { position: relative; }
 
           <div class="nav__item nav__item--services">
             <details class="nav-services">
-              <summary class="nav-services__summary">Услуги</summary>
+              <summary class="nav-services__summary active">Услуги</summary>
               <div class="nav-services__menu" aria-label="Услуги">
                 <a href="uslugi">Все услуги</a>
                 <a href="vrezka-v-truboprovod-pod-davleniem">Врезка в трубопровод</a>
@@ -1429,25 +1488,84 @@ a[href^="tel:"] { position: relative; }
   </header>
   <div class="nav-backdrop"></div>
 
-  <section class="section section--navy error-page">
+  <section class="page-hero">
     <div class="container">
-      <div class="error-page__code" aria-hidden="true">404</div>
-      <h1>Страница не найдена</h1>
-      <p>Возможно, ссылка устарела или страница была перемещена. Загляните на главную или посмотрите список услуг.</p>
-      <div class="error-page__actions">
-        <a href="/" class="btn btn--primary">На главную</a>
-        <a href="uslugi" class="btn btn--outline">Наши услуги</a>
+      <div class="crumbs"><a href="/">Главная</a> / <a href="uslugi">Услуги</a> / <span>Врезка в газопровод</span></div>
+      <h1>Врезка в газопровод под давлением</h1>
+      <p>Выполняем врезку в газопроводы низкого, среднего и высокого давления без остановки подачи, когда условия объекта и требования безопасности позволяют выполнить работы под давлением.</p>
+      <div class="hero__cta"><a href="#" class="btn btn--primary" data-open-modal data-service="Врезка в газопровод под давлением">Получить консультацию</a></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:860px">
+      <p class="lead">Газовые сети требуют особенно строгой подготовки: до выезда уточняем давление, материал трубы, наличие проекта, доступ к месту работ и требования эксплуатирующей организации. На объекте проверяем возможность безопасной врезки, подбираем узел и согласуем порядок работ.</p>
+
+      <div class="service-gallery" data-reveal>
+        <figure class="service-gallery__main">
+          <img src="assets/photo_5334783689184973056_y.jpg" alt="Временная обвязка на действующей линии" loading="lazy">
+          <figcaption class="service-gallery__caption">Временная обвязка на действующей линии</figcaption>
+        </figure>
+        <div class="service-gallery__side">
+          <figure class="service-gallery__item">
+            <img src="assets/IMG-20240426-WA0081.jpg" alt="Сварочные работы на магистральном участке" loading="lazy">
+            <figcaption class="service-gallery__caption">Сварочные работы на магистральном участке</figcaption>
+          </figure>
+          <figure class="service-gallery__item">
+            <img src="assets/D 150.jpg" alt="Узел на трубопроводе диаметром 150 мм" loading="lazy">
+            <figcaption class="service-gallery__caption">Узел на трубопроводе диаметром 150 мм</figcaption>
+          </figure>
+        </div>
       </div>
-      <div class="error-page__phone">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+      <p class="service-gallery__note">Показываем рабочий процесс: подготовка участка, временная обвязка и монтаж узла.</p>
+
+      <div class="cards cards--2" style="margin-top:34px">
+        <div class="panel-card"><span class="panel-tag">Под давлением</span><h3>Без остановки потока</h3><p>Работаем по действующей линии, чтобы не отключать потребителей и не сливать систему целиком.</p></div>
+        <div class="panel-card"><span class="panel-tag">15-500 мм</span><h3>Подбор узла под объект</h3><p>Учитываем диаметр, материал, давление, среду, доступ и требования эксплуатирующей организации.</p></div>
+      </div>
+      <h2 style="margin-top:40px">Для каких задач подходит</h2><ul class="check-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> подключение нового потребителя к действующей газовой линии</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> устройство технологического отвода или перемычки на промышленном объекте</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> монтаж дополнительной запорной арматуры, контрольной точки или узла учета</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> ремонтный отвод перед локальным перекрытием участка</li>
+      </ul>
+      <h2 style="margin-top:40px">Что входит в работу</h2><ol class="proc-list"><li><strong>Заявка и исходные данные.</strong> Уточняем задачу, адрес, диаметр, материал трубы, рабочую среду, давление и доступ.</li><li><strong>Осмотр и решение.</strong> Инженер проверяет участок и выбирает безопасный способ врезки.</li><li><strong>Монтаж узла.</strong> Ставим седелку, патрубок или фланцевый узел, монтируем арматуру и проверяем герметичность.</li><li><strong>Сверление под давлением.</strong> Выполняем врезку через запорный орган, контролируем узел и сдаем результат.</li></ol><ul class="check-list" style="margin-top:18px">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> обследование места врезки и проверка параметров действующего газопровода</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> подбор патрубка, седелки, арматуры и оборудования под давление</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> монтаж узла с контролем герметичности до сверления</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> врезка через запорный орган и проверка готового соединения</li>
+      </ul>
+      <h2 style="margin-top:40px">Что нужно подготовить</h2><div class="cards cards--2"><div class="panel-card"><span class="panel-tag">Рабочие параметры</span><ul class="check-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> схему или исполнительную документацию участка газопровода</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> данные по давлению, диаметру, материалу трубы и рабочей среде</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> доступ к месту работ, включая колодец, траншею или техническое помещение</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> условия допуска, если объект обслуживается эксплуатирующей организацией</li>
+          </ul></div><div class="panel-card"><span class="panel-tag">Важно</span><p>По газовым объектам окончательный способ работ определяем после осмотра и проверки исходных данных. Если безопаснее остановить участок, заранее объясняем причину и предлагаем рабочий сценарий.</p></div></div>
+      <h2 style="margin-top:40px">Частые вопросы</h2><div class="faq" style="margin-top:20px">        <div class="faq__item"><button class="faq__q">Можно ли выполнить работу без отключения потребителей? <span class="plus"></span></button><div class="faq__a"><p>Да, если параметры объекта позволяют безопасно выполнить Врезка в газопровод под давлением под давлением. Возможность подтверждаем после проверки диаметра, материала, среды, давления и доступа.</p></div></div>
+        <div class="faq__item"><button class="faq__q">Что нужно сообщить для расчета? <span class="plus"></span></button><div class="faq__a"><p>Нужны адрес, диаметр и материал трубы, рабочая среда, давление, место расположения участка и задача: новый отвод, байпас, ремонтный узел или подключение потребителя.</p></div></div>
+        <div class="faq__item"><button class="faq__q">Когда будет точная смета? <span class="plus"></span></button><div class="faq__a"><p>Ориентир называем по исходным данным, а точную смету фиксируем после осмотра. Так учитываем доступ, арматуру, земляные работы и реальные условия монтажа.</p></div></div>
+      </div>
+      <h2 style="margin-top:40px">Смотрите также</h2><div class="cards cards--2" style="margin-top:20px"><a href="vrezka-v-truboprovod-pod-davleniem" class="card"><h3>Врезка в трубопровод под давлением</h3><p>Общая страница по технологии и вариантам подключения к действующим линиям.</p></a><a href="stoimost-vrezki-pod-davleniem" class="card"><h3>Стоимость врезки под давлением</h3><p>Какие факторы влияют на цену работ и почему смета считается после осмотра.</p></a></div>
+      <div style="margin-top:40px;display:flex;gap:14px;flex-wrap:wrap"><a href="uslugi" class="btn btn--outline" style="border-color:var(--border);color:var(--ink-800)">Все услуги</a><a href="#" class="btn btn--primary" data-open-modal data-service="Врезка в газопровод под давлением">Оставить заявку</a></div>
+    </div>
+  </section>
+
+  <section class="section section--sky">
+    <div class="container">
+      <div class="cta" data-reveal>
         <div>
-          <a href="tel:+79818345864">+7 (981) 834-58-64</a>
-          <span class="error-page__phone-label">Не нашли нужное? Просто позвоните</span>
+          <h2>Рассчитаем стоимость работ</h2>
+          <p>Опишите объект, диаметр, материал трубы и задачу. Инженер уточнит детали и предложит способ работ без остановки потока.</p>
+        </div>
+        <div class="cta__actions">
+          <a href="tel:+79818345864" class="cta__phone">+7 (981) 834-58-64 <span>Ежедневно, аварийная служба 24/7</span></a>
+          <a href="#" class="btn btn--light btn--block" data-open-modal data-service="Врезка в газопровод под давлением">Получить расчет</a>
         </div>
       </div>
     </div>
   </section>
 
+  <section class="section section--tight section--sky"><div class="container"><p class="seo-text">Врезка в газопровод под давлением применяется при подключении новых потребителей, устройстве дополнительных отводов, ремонте и модернизации действующих сетей. Главные факторы подготовки: давление, категория газопровода, материал трубы, доступ к месту работ, требования эксплуатирующей организации и возможность безопасного контроля герметичности узла. Работаем в Москве, Московской области, Санкт-Петербурге и Ленинградской области. Перед началом работ согласуем технологию, сроки и смету, а после монтажа проверяем герметичность готового узла.</p></div></section>
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
@@ -1467,6 +1585,10 @@ a[href^="tel:"] { position: relative; }
             <a href="uslugi#vosstanovlenie">Восстановление сетей</a>
             <a href="uslugi#remont">Ремонт под давлением</a>
             <a href="uslugi#diagnostika">Диагностика и обследование</a>
+            <a href="vrezka-v-truboprovod-pod-davleniem">Врезка в трубопровод</a>
+            <a href="vrezka-v-gazoprovod-pod-davleniem">Врезка в газопровод</a>
+            <a href="vrezka-v-vodoprovod-pod-davleniem">Врезка в водопровод</a>
+            <a href="vrezka-v-nefteprovod-pod-davleniem">Врезка в нефтепровод</a>
           </div>
         </div>
         <div>
@@ -1520,6 +1642,7 @@ a[href^="tel:"] { position: relative; }
   </div>
 
   <button class="to-top" aria-label="Наверх"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+
   <!--JS--><script>
 /* =========================================================
    РПД — общий скрипт для всех страниц
